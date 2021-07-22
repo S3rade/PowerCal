@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #all the imports
 import os 
 from flask import Flask, request ,redirect
