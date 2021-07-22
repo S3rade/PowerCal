@@ -44,7 +44,8 @@ We will need a base image to be used on all the other docker machines, the follo
   5. `apt install -y python-dev default-libmysqlclient-dev`
   6. `pip3 install ipython flask dweepy mysqlclient`
   7. `pip3 install flask_mysqldb`
-  8. `exit`
+  8. `pip3 install GPIOEmulator`
+  9. `exit`
 
 
 - Saving the Debian Image locally under another Image name:
