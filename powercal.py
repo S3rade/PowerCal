@@ -9,8 +9,8 @@ from datetime import datetime
 app = Flask(__name__)
 
 #Database(DB) Credentials 
-app.config['MYSQL_USER'] = "root"
-app.config['MYSQL_PASSWORD'] = ""
+app.config['MYSQL_USER'] = "cost"
+app.config['MYSQL_PASSWORD'] = "CostGroupA"
 app.config['MYSQL_DB'] = "cost"
 app.config['MYSQL_HOST'] = "127.0.0.1"
 
