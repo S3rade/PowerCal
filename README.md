@@ -68,11 +68,11 @@ We will need a base image to be used on all the other docker machines, the follo
  ## Docker Settings and StartUp Commands 
  
  1. Creation of Private Network 
-    - `docker network create --subnet=172.16.0.0/16 cost_network`
-    - `docket network ls`
+   - `docker network create --subnet=172.16.0.0/16 cost_network`
+   - `docket network ls`
  
  2. Starting of the Docker Containers 
-    - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-sensor --net cost_network --ip 172.16.0.11 -v cost_vol:/root/cost_vol --name iot-sensor cost-image bash`
+   - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-sensor --net cost_network --ip 172.16.0.11 -v cost_vol:/root/cost_vol --name iot-sensor cost-image bash`
  
  
  ## References
