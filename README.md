@@ -1,11 +1,11 @@
-# PowerCal
+##PowerCal
 
 The Process of Power Cal
 
 ![Image of Process of Programme](https://github.com/Serade12/PowerCal/blob/main/Untitled%20Diagram.png)
 
 
-#Set Up From Scratch ! 
+##Set Up From Scratch ! 
 
 On a Clean Machine , run the following Commands to install Docker: 
 
