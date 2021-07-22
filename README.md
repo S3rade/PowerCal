@@ -1,14 +1,11 @@
-
-## PowerCal
-
-The Process of Power Cal
+## The Process of Power Cal
 
 ![Image of Process of Programme](https://github.com/Serade12/PowerCal/blob/main/Untitled%20Diagram.png)
 
 
 ## Set Up From Scratch ! 
 
-On a Clean Machine , run the following Commands to install Docker: 
+# On a Clean Machine , run the following Commands to install Docker: 
 
 1. `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -`
 2. `echo 'deb https://download.docker.com/linux/debian stretch stable' > /etc/apt/sources.list.d/docker.list`
@@ -17,7 +14,8 @@ On a Clean Machine , run the following Commands to install Docker:
 5. `apt-get install -y docker-ce`
 6. `apt install cgroup-tools cgroupfs-mount libcgroup-dev libcgroup1 libpam-cgroup golang-github-containerd-cgroups-dev docker-compose -y`
 
-With the Docker Installed,time to setup the Dockers
+# With the Docker Programme Installed,
+We will need a base image to be used on all the other docker machines, the following commands will be used to get our base image ready for the application we are using.
 
 - Creation of the Docker Volume and relevant details:
   1. `docker volume create cost_vol`
