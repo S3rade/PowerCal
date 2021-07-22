@@ -1,9 +1,9 @@
-## The Process of Power Cal
+### The Process of Power Cal
 
 ![Image of Process of Programme](https://github.com/Serade12/PowerCal/blob/main/Untitled%20Diagram.png)
 
 
-## Set Up From Scratch ! 
+### Set Up From Scratch ! 
 
 # On a Clean Machine , run the following Commands to install Docker: 
 
@@ -65,7 +65,7 @@ We will need a base image to be used on all the other docker machines, the follo
       
  Thats all for setup !
  
- ## References
+ ### References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
  
 
