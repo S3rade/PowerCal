@@ -18,10 +18,12 @@ On a Clean Machine , run the following Commands to install Docker:
 
 With the Docker Installed,time to setup the Dockers
 
+
 1. Creation of the Docker Volume and relevant details:
   1. `docker volume create cost_vol`
   2. `docker volume inspect cost_vol`
   3. `ln -s /var/lib/docker/volumes/cost_vol/_data /root/cost_vol`
+  
   
 2. Transfering Scripts into the Docker Folder to be used:
   1. `cp /root/scrips.zip /root/cost_vol`
@@ -29,10 +31,12 @@ With the Docker Installed,time to setup the Dockers
   3. `unzip scripts.zip`
   4. `chmod u+x /root/iot_vol/scripts/*.py`
  
+ 
 3. Pulling of Debian image and Running it as a container :
   1. `docker pull debian:stretch-slim`
   2. `docker run -dit --name cost-base debian:stretch-slim bash`
   3. `docker images`
+
 
 4. Attaching the Docker to a terminal and running programme installtions: 
   1. `docker exec -it cost-base bash`
@@ -44,11 +48,13 @@ With the Docker Installed,time to setup the Dockers
   7. `pip3 install flask_mysqldb`
   8. `exit`
 
+
 5. Saving the Debian Image locally under another Image name:
   1. `docker commit cost-base cost-image`
   2. `docker stop cost-base`
   3. `docker save -o cost-image.tar cost-image`
   4. `docker rm cost-base`
+
 
 6. Additional Commands if needed :
   1. Removing of Image: 
@@ -57,6 +63,7 @@ With the Docker Installed,time to setup the Dockers
       `docker rm container_name`
   3. Backup Image:
       `docker save -o output_filename.tar image_name`
+      
       
  Thats all for setup !
 
