@@ -79,10 +79,11 @@ while True:
 		client.connect(broker) #Connects to broker
 		client.loop_start()
 		print('Publishing ... ') 
-		client.publish("iot/Aircon","ON")		
+		client.publish("iot/Aircon","OFF")		
 		print('Published !')
 		time.sleep(4)
 		client.loop_stop()
+		client.disconnect()
 		
 
 		old_dweet = dweepy.dweet_for(myThing, {"dweet": "Red"}) #this function sends data to dweet.io
@@ -96,7 +97,17 @@ while True:
 		GPIO.output(GreenLEDPin, True) # True = set 3.3V on the pin
 		GPIO.output(RedLEDPin,   False) #False = set 0V on the pin
 		print('sending dweet...')
-				
+
+		#MQTT codes		
+		client.connect(broker) #Connects to broker
+		client.loop_start()
+		print('Publishing ... ') 
+		client.publish("iot/Aircon","ON")		
+		print('Published !')
+		time.sleep(4)
+		client.loop_stop()
+		client.disconnect()
+
 		old_dweet = dweepy.dweet_for(myThing, {"dweet": "Green"}) #this function sends data to dweet.io
 		old_created = old_dweet['created'] #get the time stamp of the first dweet
 		print('send dweet@' , old_created + '\n')
@@ -137,7 +148,8 @@ while True:
 			print('Published !')
 			time.sleep(4)
 			client.loop_stop()
-			
+			client.disconnect()
+
 			lit1 = "f"
 			print()
 
@@ -155,6 +167,8 @@ while True:
 			print('Published !')
 			time.sleep(4)
 			client.loop_stop()
+			client.disconnect()
+
 			lit1 = "o"
 			print()
 	time.sleep(1)
