@@ -76,6 +76,17 @@ We will need a base image to be used on all the other docker machines, the follo
    - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-sensor --net cost_network --ip 172.16.0.11 -v cost_vol:/root/cost_vol --name iot-sensor cost-image bash`
  
  
+ ## File Names and It's Purposes
+ 1. Untitled Diagram.png is the _**Use Case Diagram**_.
+ 
+ 2. init_mysql.sql is the _**MySQL(MariaDB) database creation and building**_.
+ 
+ 3. iot_sensor.py is the _**Raspberry Pi IOT Sensor Simulation**_.
+ 
+ 4. powercal.py is the _**Programme to running of the webpage for users to see**_. 
+ 
+ 5. start_webdb.sh is the _**script to excecute the init_mysql.sql and powercal.py at the same time for convience**_.
+ 
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
  
