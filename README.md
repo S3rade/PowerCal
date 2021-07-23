@@ -77,7 +77,7 @@ We will need a base image to be used on all the other docker machines, the follo
  
  
  ## File Names and It's Purposes
- 1. `Untitled Diagram.png` is the _**Use Case Diagram**_.
+ 1. `/images/PowerCal_Flow.png` is the _**Use Case Diagram**_.
  
  2. `init_mysql.sql` is the _**MySQL(MariaDB) database creation and building**_.
  
