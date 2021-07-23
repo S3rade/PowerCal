@@ -45,7 +45,8 @@ We will need a base image to be used on all the other docker machines, the follo
   6. `pip3 install ipython flask dweepy mysqlclient`
   7. `pip3 install flask_mysqldb`
   8. `pip3 install GPIOEmulator`
-  9. `exit`
+  9. `pip3 install paho-mqtt`
+  10. `exit`
 
 
 - Saving the Debian Image locally under another Image name:
