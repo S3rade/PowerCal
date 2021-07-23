@@ -85,7 +85,7 @@ We will need a base image to be used on all the other docker machines, the follo
  
  4. `powercal.py` is the _**Programme to running of the webpage for users to see**_. 
  
- 5. `start_webdb.sh` is the _**script to excecute the init_mysql.sql and powercal.py at the same time for convience**_.
+ 5. `start_webdb.sh` is the _**script to excecute init_mysql.sql and powercal.py scripts and start MySQL services.**_.
  
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
