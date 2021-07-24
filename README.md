@@ -87,6 +87,39 @@ We will need a base image to be used on all the other docker machines, the follo
  
  5. `start_webdb.sh` is the _**script to excecute init_mysql.sql and powercal.py scripts and start MySQL services.**_.
  
+ 6. `/cacert/simple_pass.conf` is the _**sample password and user config for mosquitto MQTT to run**_.
+ 
+ 7. `/cacert/passwords` is the _**hashed password for MQTT to load in during simple_pass.conf to set the username and password on initalization**_.
+ 
+ 8. `EmulateGPIO.py` is the  _**python script used during the import for iot_sensor.py to allow it to run the Raspberry Pi Simulation**_.
+ 
+ ## Setting Up PowerCal
+ 
+ 1. Launch your IOT Sensor , MQTT and Database Dockers
+ 
+ 2. Download PowerCal into your docker root directory, for my case its at /root/cost_vol/scripts
+ 
+ 3. Launch MQTT broker in your MQTT docker by using the command
+    - `cd /root/cost_vol/scripts/cacert `
+    
+    - `mosquitto -v -c simple_pass.conf`
+    
+    With this now your MQTT Broker is running
+    
+ 4. On your IOT Sensor Docker, launch iot_sensor.py script
+    - `cd /root/cost_vol/scripts`
+    
+    - `./iot_sensor.py`
+  
+    Debugging : 
+    
+    Insufficent privileges: `chmod u+x filename`
+    
+    Import EmulateGPIO Cant load module : ensure EmulateGPIO.py is in the same root directory as iot_sensor.py 
+ 
+ 5. Debugging command :
+ 
+ 
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
  2. [Installation Guide on Mosquitto for Linux](http://www.steves-internet-guide.com/install-mosquitto-linux/)
