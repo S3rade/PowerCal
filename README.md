@@ -89,7 +89,7 @@ We will need a base image to be used on all the other docker machines, the follo
  
  6. `/cacert/simple_pass.conf` is the _**sample password and user config for mosquitto MQTT to run**_.
  
- 7. `/cacert/passwords` is the _**hashed password for MQTT to load in during simple_pass.conf to set the username and password on initalization**_.
+ 7. `/cacert/passwords` is the _**hashed password for MQTT to load in during simple_pass.conf to set the username and password on initialization**_.
  
  8. `EmulateGPIO.py` is the  _**python script used during the import for iot_sensor.py to allow it to run the Raspberry Pi Simulation**_.
  
