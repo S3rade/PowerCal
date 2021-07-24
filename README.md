@@ -120,7 +120,7 @@ We will need a base image to be used on all the other docker machines, the follo
  5. On your Database Docker, launch powercal.py usings the codes: 
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
-    -`./powercal.py`  
+    - `./powercal.py`  
     
     Errors you may Face: 
     
