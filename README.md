@@ -99,25 +99,34 @@ We will need a base image to be used on all the other docker machines, the follo
  
  2. Download PowerCal into your docker root directory, for my case its at /root/cost_vol/scripts
  
- 3. Launch MQTT broker in your MQTT docker by using the command
-    - `cd /root/cost_vol/scripts/cacert `
+ 3. Launch MQTT broker in your MQTT docker by using the commands:
+    - `cd /root/cost_vol/scripts/cacert ` Be sure to change to your Docker root directory 
     
     - `mosquitto -v -c simple_pass.conf`
     
     With this now your MQTT Broker is running
     
- 4. On your IOT Sensor Docker, launch iot_sensor.py script
-    - `cd /root/cost_vol/scripts`
+ 4. On your IOT Sensor Docker, launch iot_sensor.py script using the commands:
+    - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
     - `./iot_sensor.py`
   
-    Debugging : 
+    Errors you may Face: 
     
     Insufficent privileges: `chmod u+x filename`
     
     Import EmulateGPIO Cant load module : ensure EmulateGPIO.py is in the same root directory as iot_sensor.py 
  
- 5. Debugging command :
+ 5. On your Database Docker, launch powercal.py usings the codes: 
+    - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
+    
+    -`./powercal.py`  
+    
+    Errors you may Face: 
+    
+    Insufficent privileges: `chmod u+x filename`
+ 
+ 6.Now you can see the Table of the databse by going to databaseip:8080 in web browser of your choice. 
  
  
  ## References
