@@ -132,5 +132,7 @@ We will need a base image to be used on all the other docker machines, the follo
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
  2. [Installation Guide on Mosquitto for Linux](http://www.steves-internet-guide.com/install-mosquitto-linux/)
+ 3. [Beginners Guide To The Paho MQTT Python Client](http://www.steves-internet-guide.com/into-mqtt-python-client/)
+ 4. [Mosquitto Username and Password Authentication Configuration and Testing](http://www.steves-internet-guide.com/mqtt-username-password-example/)
  
 
