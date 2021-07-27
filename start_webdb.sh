@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /root/cost_vol/scripts
+cd /root/iot_vol/scripts
 service mysql start
 mysql < init_mysql.sql
-./powercal.py
+./docker_app.py
