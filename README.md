@@ -129,8 +129,10 @@ We will need a base image to be used on all the other docker machines, the follo
  6.Now you can see the Table of the databse by going to databaseip:8080 in web browser of your choice. 
  
  ## File Structure In Host Machine
- 
+ Main File Structure:
 ![Main File Structure](https://github.com/Serade12/PowerCal/blob/main/Images/main_file_structure.JPG)
+
+Cacert File Structure:
 ![Cacert File Structure](https://github.com/Serade12/PowerCal/blob/main/Images/cacert_file_structure.JPG)
 
  
