@@ -43,10 +43,13 @@ GPIO.output(RedLEDPin,   False) #False = set 0V on the pin
 print('All LEDs are turned OFF' + '\n')
 
 #MQTT Details
-broker="172.16.0.12"
+broker="iot-db"
 port = 1883
 client = mqtt.Client("IOT-Sensor-Publisher")
 client.username_pw_set(username= "root",password="kali")
+certfilepath= "/root/cost_vol/scripts/cacert/ca.crt" #ca.cert Path, Change to your own path if needed.
+client.tls_set(certfilepath,tls_version=2)
+client.tls_insecure_set(False) #False is to turn on the Checking of Hostname against the cert
 
 
 #MQTT Functions
