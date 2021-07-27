@@ -47,9 +47,9 @@ broker="iot-mqtt"
 port = 1883
 client = mqtt.Client("IOT-Sensor-Publisher")
 client.username_pw_set(username= "root",password="kali")
-certfilepath= "/root/cost_vol/scripts/cacert/ca.crt" #ca.cert Path, Change to your own path if needed.
+certfilepath= "/root/cost_vol/scripts/cacert/ca.crt"
 client.tls_set(certfilepath,tls_version=2)
-client.tls_insecure_set(False) #False is to turn on the Checking of Hostname against the cert
+client.tls_insecure_set(False)
 
 
 #MQTT Functions
@@ -82,7 +82,7 @@ while True:
 		client.connect(broker) #Connects to broker
 		client.loop_start()
 		print('Publishing ... ') 
-		client.publish("iot/Aircon","OFF")		
+		client.publish("iot","Aircon:OFF")	
 		print('Published !')
 		time.sleep(4)
 		client.loop_stop()
@@ -105,7 +105,7 @@ while True:
 		client.connect(broker) #Connects to broker
 		client.loop_start()
 		print('Publishing ... ') 
-		client.publish("iot/Aircon","ON")		
+		client.publish("iot","Aircon:ON")		
 		print('Published !')
 		time.sleep(4)
 		client.loop_stop()
@@ -147,7 +147,7 @@ while True:
 			client.connect(broker) #Connects to broker
 			client.loop_start()
 			print('Publishing ... ') 
-			client.publish("iot/Aircon","OFF")		
+			client.publish("iot","Aircon:OFF")		
 			print('Published !')
 			time.sleep(4)
 			client.loop_stop()
@@ -166,7 +166,7 @@ while True:
 			client.connect(broker) #Connects to broker
 			client.loop_start()
 			print('Publishing ... ') 
-			client.publish("iot/Aircon","ON")		
+			client.publish("iot","Aircon:ON")		
 			print('Published !')
 			time.sleep(4)
 			client.loop_stop()
