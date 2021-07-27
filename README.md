@@ -2,6 +2,19 @@
 
 ![Image of Process of Programme](https://github.com/Serade12/PowerCal/blob/main/Images/PowerCal_Flow.png)
 
+## DISCLAIMERS
+
+**IF YOU ARE SETTING IT UP IN YOUR OWN ENVIROMENT ENSURE THE PATHS ARE CORRECT AS WELL AS LOCATION OF SCRIPTS** 
+**SAFEST IS TO FOLLOW THE SAME FILE STRUCTURE SEEN BELOW! ** 
+
+## File Structure In Host Machine
+ Main File Structure:
+ 
+![Main File Structure](https://github.com/Serade12/PowerCal/blob/main/Images/main_file_structure.JPG)
+
+Cacert File Structure:
+
+![Cacert File Structure](https://github.com/Serade12/PowerCal/blob/main/Images/cacert_file_structure.JPG)
 
 ## Set Up From Scratch ! 
 
@@ -79,20 +92,27 @@ We will need a base image to be used on all the other docker machines, the follo
  ## File Names and It's Purposes
  1. `/images/PowerCal_Flow.png` is the _**Use Case Diagram**_.
  
- 2. `init_mysql.sql` is the _**MySQL(MariaDB) database creation and building**_.
+ 2. `DB/init_mysql.sql` is the _**MySQL(MariaDB) database creation and building**_.
  
- 3. `iot_sensor.py` is the _**Raspberry Pi IOT Sensor Simulation**_.
+ 3. `DB/docker_app.py` is the _**Programme to running of the webpage for users to see**_. 
  
- 4. `powercal.py` is the _**Programme to running of the webpage for users to see**_. 
+ 4. `DB/start_webdb.sh` is the _**script to excecute init_mysql.sql and powercal.py scripts and start MySQL services.**_.
  
- 5. `start_webdb.sh` is the _**script to excecute init_mysql.sql and powercal.py scripts and start MySQL services.**_.
+ 5. `DB/static` is the  _**folder used to call the image to the webpage **_.
  
- 6. `/cacert/simple_pass.conf` is the _**sample password and user config for mosquitto MQTT to run**_.
+ 6. `DB/templates` is the _**folder with the template layout for Webpage*_. 
  
- 7. `/cacert/passwords` is the _**hashed password for MQTT to load in during simple_pass.conf to set the username and password on initialization**_.
+ 7. `MQTT/cacert/passwords` is the _**hashed password for MQTT to load in during simple_pass.conf to set the username and password on initialization**_.
  
- 8. `EmulateGPIO.py` is the  _**python script used during the import for iot_sensor.py to allow it to run the Raspberry Pi Simulation**_.
+ 8. `MQTT/cacert/tls.conf` is the _**TLS config for mosquitto MQTT to run**_.
  
+ 9. `MQTT/cacert/docker_generate-ca.sh` is the _**CA Cert Generator for authentication details*__
+ 
+ 10. `IOT SENSOR/iot_sensor.py` is the _**Raspberry Pi IOT Sensor Simulation**_.
+ 
+ 11. `IOT SENSOR/EmulateGPIO.py` is the  _**python script used during the import for iot_sensor.py to allow it to run the Raspberry Pi Simulation**_.\
+ 
+  
  ## Setting Up PowerCal
  
  1. Launch your IOT Sensor , MQTT and Database Dockers
@@ -128,16 +148,7 @@ We will need a base image to be used on all the other docker machines, the follo
  
  6.Now you can see the Table of the databse by going to databaseip:8080 in web browser of your choice. 
  
- ## File Structure In Host Machine
- Main File Structure:
- 
-![Main File Structure](https://github.com/Serade12/PowerCal/blob/main/Images/main_file_structure.JPG)
 
-Cacert File Structure:
-
-![Cacert File Structure](https://github.com/Serade12/PowerCal/blob/main/Images/cacert_file_structure.JPG)
-
- 
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
  2. [Installation Guide on Mosquitto for Linux](http://www.steves-internet-guide.com/install-mosquitto-linux/)
