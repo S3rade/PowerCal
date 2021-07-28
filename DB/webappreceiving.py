@@ -50,10 +50,12 @@ def on_message(client, userdata, message):
         elif (position == 1):
             device_id = "2"
             device_status= "1"
+    os.system('curl http://172.16.0.13:8080/update/'+device_id+'?"DeviceStatus='+deviceStatus+'"')
     else:
         print("Appliance name not recognised")
-    
-    os.system('curl http://172.16.0.13:8080/update/'+device_id+'?"DeviceStatus='+deviceStatus+'"')
+        print ("Adding Appliance into the Database")
+    os.system('curl http://172.16.0.13:8080/add/'+appliance_name+'?"&DeviceStatus='+deviceStatus+'"')
+
 Messagereceived=False
 
 connected=False
