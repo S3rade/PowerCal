@@ -61,8 +61,9 @@ We will need a base image to be used on all the other docker machines, the follo
   8. `pip3 install paho-mqtt`
   9. `pip3 install flask flask-bootstrap4 pyotp`
   10. `pip3 install imutils`
-  11. `pip3 install opencv-python`
-  12. `exit`
+  11. `pip install scikit-build`
+  12. `pip3 install opencv-python`
+  13. `exit`
 
 
 - Saving the Debian Image locally under another Image name:
