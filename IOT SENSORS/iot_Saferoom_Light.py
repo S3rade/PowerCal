@@ -109,7 +109,7 @@ while True:
 		client.connect(broker) #Connects to broker
 		client.loop_start()
 		print('Publishing ... ') 
-		client.publish("iot","Light Safe Room:OFF")		
+		client.publish("iot","Light Safe Room:ON")		
 		print('Published !')
 		time.sleep(4)
 		client.loop_stop()
