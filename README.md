@@ -26,7 +26,7 @@ Cacert File Structure:
 3. `apt-get update`
 4. `apt-get remove docker docker-engine docker.io`
 5. `apt-get install -y docker-ce`
-6. `apt install cgroup-tools cgroupfs-mount libcgroup-dev libcgroup1 libpam-cgroup golang-github-containerd-cgroups-dev docker-compose net-tools -y`
+6. `apt install cgroup-tools cgroupfs-mount libcgroup-dev libcgroup1 libpam-cgroup golang-github-containerd-cgroups-dev docker-compose net-tools curl -y`
 
 # With the Docker Programme Installed,
 We will need a base image to be used on all the other docker machines, the following commands will be used to get our base image ready for the application we are using.
