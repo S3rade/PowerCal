@@ -11,12 +11,14 @@ from flask import *
 from flask_bootstrap import Bootstrap
 
 
+
 app = Flask(__name__)
 
 #Database(DB) Credentials 
 app.config['MYSQL_USER'] = "cost"
 app.config['MYSQL_PASSWORD'] = "CostGroupA"
 app.config['MYSQL_DB'] = "cost"
+app.config['MYSQL_TABLE'] = "sensors"
 app.config['MYSQL_HOST'] = "127.0.0.1"
 app.config['SECRET_KEY'] = "APP_SECRET_KEY"
 
@@ -98,6 +100,45 @@ def login_2fa_form():
         flash("You have supplied an invalid 2FA token!", "danger")
         return redirect(url_for("login_2fa"))
 
+# Add Function
+@app.route("/db/add/", methods=["GET","PUT"] )
+@app.route("/db/add/<appliance_name>", methods=["GET","PUT"] )
+def add(appliance_name=None):
+    StatusStr = request.args.get('Status')
+    if StatusStr == None or appliance_name == None:
+        return "Not Valid"
+    try:
+        cur = mysql.connection.cursor()
+        query="insert into sensors(Appliance_Name,Status) values ('" + appliance_name + "','" + StatusStr + "');"
+        print(query)
+        cur.execute(query)
+        mysql.connection.commit()
+
+    except Exception as e:
+        print("Problem inserting into db: " + str(e))
+        return "FAIL"
+    cur.close()
+    return "OK"
+    
+#Update Function
+@app.route("/db/update/", methods=["GET","PUT"] )
+@app.route("/db/update/<device_id>", methods=["GET","PUT"] )
+def update(device_id=None):
+    StatusStr = request.args.get('Status')
+    if StatusStr == None or device_id == None:
+        return "Not valid"
+   
+    try:
+        cur = mysql.connection.cursor()
+        query="update sensors set Status = '" + StatusStr + "' where ID = '" + device_id + "';"
+        print(query)
+        cur.execute(query)
+        mysql.connection.commit()
+        
+    except:
+        return "FAIL"
+    cur.close()
+    return "OK"
 
  
 #Database Page
@@ -129,7 +170,11 @@ def default():
             completeTable += "<th>" + str(c[1]) + "</th>"
 
             #Retreiving the third Variable from DB Query and check for Boolean, '1' means ON and '0' means OFF
-            while str(c[2]) == 1: #Check if its a '1' or '0'
+            hi = str(c[2])
+            
+            if str(c[2]) == '1': #Check if its a '1' or '0'
+                
+            
                 completeTable += "<th> ON </th>"
                 #Takes the Fourth Variable from the DB Query and Call Time Diff
                 start_time = c[3]
