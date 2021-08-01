@@ -56,9 +56,14 @@ def on_message(client, userdata, msg):
                 Messagereceived=False
         elif (position == 1):
             device_id = "2"
-            deviceStatus= "1"
-            os.system('curl http://172.16.0.13:8080/db/update/'+device_id+'?"Status='+deviceStatus+'"')
-            Messagereceived=False
+            if appliance_status == "OFF":
+                deviceStatus = "0"
+                os.system('curl http://172.16.0.13:8080/db/update/'+device_id+'?"Status='+deviceStatus+'"')
+                Messagereceived=False
+            else:
+                deviceStatus = "1"
+                os.system('curl http://172.16.0.13:8080/db/update/'+device_id+'?"Status='+deviceStatus+'"')
+                Messagereceived=False
     else:
         deviceStatus= "0"
         print("Appliance name not recognised")
