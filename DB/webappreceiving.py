@@ -60,9 +60,10 @@ def on_message(client, userdata, msg):
             os.system('curl http://172.16.0.13:8080/db/update/'+device_id+'?"Status='+deviceStatus+'"')
             Messagereceived=False
     else:
+        deviceStatus= "0"
         print("Appliance name not recognised")
         print ("Adding Appliance into the Database")
-        os.system('curl http://172.16.0.13:8080/add/'+appliance_name+'?"Status='+deviceStatus+'"')
+        os.system('curl http://172.16.0.13:8080/db/add/'+appliance_name+'?"Status='+deviceStatus+'"')
         Messagereceived=False
 
 connected=False
