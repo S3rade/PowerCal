@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import requests
 
 #Import MQTT connector module.
 import paho.mqtt.client as mqtt 
@@ -51,18 +52,11 @@ certfilepath= "/root/cost_vol/scripts/cacert/ca.crt"
 client.tls_set(certfilepath,tls_version=2)
 client.tls_insecure_set(False)
 
-
-#MQTT Functions
-def on_connect(client, userdata, flags, rc):
-    print("Connected with result code", rc)
-
-def on_publish(client, userdata,result):
-  	print ("Data is being Published \n")
-
-def on_disconnect(client, userdata, rc):
-    print("Broker has Disconnected!")
-
-
+#Telegram Bot Details
+bot_token ='1901275375:AAES0FFP74rtGuXr9BHAk5RFTtWXnv3akyE'
+bot_chatID = '265570316'
+status_on = 'Aircon is ON '
+status_off ='Aircon is OFF'
 while True:
 	
 	# Asks the user to select the LED. Put the response into a variable.
@@ -88,6 +82,8 @@ while True:
 		client.loop_stop()
 		client.disconnect()
 		
+		send_status = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + status_off
+		response=requests.get(send_status)
 
 		old_dweet = dweepy.dweet_for(myThing, {"dweet": "Red"}) #this function sends data to dweet.io
 		old_created = old_dweet['created'] #get the time stamp of the first dweet
@@ -110,6 +106,9 @@ while True:
 		time.sleep(4)
 		client.loop_stop()
 		client.disconnect()
+
+		send_status = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + status_on
+		response=requests.get(send_status)
 
 		old_dweet = dweepy.dweet_for(myThing, {"dweet": "Green"}) #this function sends data to dweet.io
 		old_created = old_dweet['created'] #get the time stamp of the first dweet
@@ -153,6 +152,9 @@ while True:
 			client.loop_stop()
 			client.disconnect()
 
+			send_status = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + status_off
+			response=requests.get(send_status)
+
 			lit1 = "f"
 			print()
 
@@ -171,6 +173,9 @@ while True:
 			time.sleep(4)
 			client.loop_stop()
 			client.disconnect()
+
+			send_status = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + status_on
+			response=requests.get(send_status)
 
 			lit1 = "o"
 			print()
