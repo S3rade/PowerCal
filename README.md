@@ -60,7 +60,7 @@ We will need a base image to be used on all the other docker machines, the follo
   7. `pip3 install flask_mysqldb`
   8. `pip3 install paho-mqtt`
   9. `pip3 install flask flask-bootstrap4 pyotp`
-  10. `pip3 install imutils opencv-python scikit-build`
+  10. `pip3 install imutils opencv-python scikit-build numpy`
   11. `exit`
 
 
