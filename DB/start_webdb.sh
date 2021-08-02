@@ -10,4 +10,5 @@ ufw enable
 cd /root/iot_vol/scripts
 service mysql start
 mysql < init_mysql.sql
+#Starts up both docker_app.py and webappreceiving.py
 ./docker_app.py & ./webappreceiving.py
