@@ -116,7 +116,7 @@ def login_2fa_form():
 
 @app.route('/logout')
 def logout():
-    #session.pop('auth_token', None)
+    session.pop('logined', None)
     session.pop('authenticated', None)
     return redirect(url_for('login'))
 # Add Function
