@@ -17,7 +17,7 @@ certfilepath= "/root/iot_vol/scripts/cacert/ca.crt"
 client.tls_set(certfilepath,tls_version=2)
 client.tls_insecure_set(False)
 #appliance_list defined for later use in functions below
-appliance_list = ['Aircon', 'SafeRoom_Light']
+appliance_list = ['Aircon', 'SafeRoom_Light', 'Oven']
 
 #MQTT Functions
 def on_connect(client, userdata, flags, rc):
