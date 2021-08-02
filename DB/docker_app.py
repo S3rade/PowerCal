@@ -165,6 +165,7 @@ def update(device_id=None):
 @app.route('/db', methods=["GET","PUT"] )
 def default():
     if session.get('authenticated') == True:
+    	#Same as Init
         cur = mysql.connection.cursor()
         cur.execute('SELECT * FROM sensors')
         results = cur.fetchall()
@@ -172,7 +173,7 @@ def default():
         print("Access Granted")
     else:
         return redirect(url_for('login'))
-    #Same as Init
+    
     
 
     #Generation of Table
@@ -251,6 +252,7 @@ def default():
 	    <a href="/" class="w3-bar-item w3-button w3-wide">Sensify</a>
 	     <a href="/about" class="w3-bar-item w3-button">About</a>
 	     <a href="/info" class="w3-bar-item w3-button">Code Info</a>
+	     <a href="/logout" class="w3-bar-item w3-button">Logout</a>
 	  </div>
 	</div>
 	
