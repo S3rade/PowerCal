@@ -1,4 +1,4 @@
-#!/bin/python3
+#!usr/bin/env python3
 
 #Dependencies
 import dweepy
@@ -94,7 +94,6 @@ def nl():
 ##################################################################
 myThing = "0353B_sensor" #Add value: add your dweet thing name
 ##################################################################
-nee
 ##################################################################
 #setting up GPIO
 GPIO.setmode(GPIO.BCM)
