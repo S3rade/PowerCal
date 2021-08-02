@@ -65,13 +65,14 @@ def login_form():
     # getting form data
     username = request.form.get("username")
     password = request.form.get("password")
-    token = auth.get_token(username, password)
-    session['auth_token'] = token
+    #token = auth.get_token(username, password)
+    #session['auth_token'] = token
 
 
     # authenticating submitted creds with demo creds
     # redirecting users to 2FA page when creds are valid
     if username == creds["username"] and password == creds["password"]:
+        session['logined'] = True
         return redirect(url_for("login_2fa"))
     else:
         # inform users if creds are invalid
@@ -82,6 +83,10 @@ def login_form():
 # 2FA page route
 @app.route("/login/2fa/")
 def login_2fa():
+    if session.get('logined') == True:
+            print("Access Granted")
+    else:
+        return redirect(url_for('login'))
     # generating random secret key for authentication
     #secret = pyotp.random_base32()
     secret = "QAAGLKQZH5ACKGNX"
@@ -91,6 +96,10 @@ def login_2fa():
 # 2FA form route
 @app.route("/login/2fa/", methods=["POST"])
 def login_2fa_form():
+    if session.get('logined') == True:
+            print("Access Granted")
+    else:
+        return redirect(url_for('login'))
     # getting secret key used by user
     secret = request.form.get("secret")
     # getting OTP provided by user
@@ -101,6 +110,7 @@ def login_2fa_form():
         # inform users if OTP is valid
         flash("The TOTP 2FA token is valid", "success")
         session['authenticated'] = True  
+        request.endpoint
         return redirect("/db")
     else:
         # inform users if OTP is invalid
@@ -109,7 +119,7 @@ def login_2fa_form():
 
 @app.route('/logout')
 def logout():
-    session.pop('auth_token', None)
+    #session.pop('auth_token', None)
     session.pop('authenticated', None)
     return redirect(url_for('login'))
 # Add Function
@@ -157,10 +167,10 @@ def update(device_id=None):
 #Database Page
 @app.route('/db', methods=["GET","PUT"] )
 def default():
-    if 'auth_token' in session:
-            return f(*args, **kwargs)
-
-    return redirect(url_for('login'))
+    if session.get('authenticated') == True:
+            print("Access Granted")
+    else:
+        return redirect(url_for('login'))
     #Same as Init
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM sensors')
