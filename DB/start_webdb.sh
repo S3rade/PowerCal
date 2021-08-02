@@ -5,7 +5,8 @@ ufw allow ssh
 ufw allow 8080/tcp
 ufw allow 80/tcp
 ufw enable
-ufw limit 8080/tcp
+#comment the below line if facing issues accessing the database
+#ufw limit 8080/tcp
 cd /root/iot_vol/scripts
 service mysql start
 mysql < init_mysql.sql
