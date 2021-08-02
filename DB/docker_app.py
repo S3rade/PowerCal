@@ -119,21 +119,22 @@ def logout():
     session.pop('logined', None)
     session.pop('authenticated', None)
     return redirect(url_for('login'))
+
 # Add Function
 @app.route("/db/add/", methods=["GET","PUT"] )
 @app.route("/db/add/<appliance_name>", methods=["GET","PUT"] )
 def add(appliance_name=None):
-    StatusStr = request.args.get('Status')
+    StatusStr = request.args.get('Status') #Ensure that there are arguments to put into the db
     if StatusStr == None or appliance_name == None:
         return "Not Valid"
     try:
         cur = mysql.connection.cursor()
         query="insert into sensors(Appliance_Name,Status) values ('" + json.dumps(appliance_name) + "','" + json.dumps(StatusStr) + "');"
         print(query)
-        cur.execute(query)
-        mysql.connection.commit()
+        cur.execute(query) #Executing the query
+        mysql.connection.commit() #Committing the changes into the database 
 
-    except Exception as e:
+    except Exception as e: #If there is error
         print("Problem inserting into db: " + str(e))
         return "FAIL"
     cur.close()
@@ -143,7 +144,7 @@ def add(appliance_name=None):
 @app.route("/db/update/", methods=["GET","PUT"] )
 @app.route("/db/update/<device_id>", methods=["GET","PUT"] )
 def update(device_id=None):
-    StatusStr = request.args.get('Status')
+    StatusStr = request.args.get('Status') #Ensure that there are arguments to put into the db
     if StatusStr == None or device_id == None:
         return "Not valid"
    
@@ -151,10 +152,10 @@ def update(device_id=None):
         cur = mysql.connection.cursor()
         query="update sensors set Status = '" + json.dumps(StatusStr) + "' where ID = '" + json.dumps(device_id) + "';"
         print(query)
-        cur.execute(query)
-        mysql.connection.commit()
+        cur.execute(query) #Executing the query
+        mysql.connection.commit() #Committing the changes into the database
         
-    except:
+    except: #If there is error
         return "FAIL"
     cur.close()
     return "OK"
@@ -167,12 +168,12 @@ def default():
     if session.get('authenticated') == True:
     	#Same as Init
         cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM sensors')
+        cur.execute('SELECT * FROM sensors') #Fetching all the things in the db
         results = cur.fetchall()
         cur.close()
         print("Access Granted")
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('login')) #If users are not logged in, they get redirected back to login page
     
     
 
