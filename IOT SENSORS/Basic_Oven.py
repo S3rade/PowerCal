@@ -54,7 +54,7 @@ client.tls_insecure_set(False)
 
 #Telegram Bot Details
 bot_token ='1901275375:AAES0FFP74rtGuXr9BHAk5RFTtWXnv3akyE'
-bot_chatID = '265570316'
+bot_chatID = '-554653012'
 status_on = 'Oven is ON '
 status_off ='Oven is OFF'
 while True:
