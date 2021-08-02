@@ -33,6 +33,8 @@ def init():
     #Connecting to DB
     cur = mysql.connection.cursor()
 
+    conn = mysql.connection()
+
     #Prepared Statement
     cur.execute('SELECT * FROM sensors')
 
@@ -63,6 +65,9 @@ def login_form():
     # getting form data
     username = request.form.get("username")
     password = request.form.get("password")
+    token = auth.get_token(username, password)
+    session['auth_token'] = token
+
 
     # authenticating submitted creds with demo creds
     # redirecting users to 2FA page when creds are valid
@@ -95,12 +100,18 @@ def login_2fa_form():
     if pyotp.TOTP(secret).verify(otp):
         # inform users if OTP is valid
         flash("The TOTP 2FA token is valid", "success")
+        session['authenticated'] = True  
         return redirect("/db")
     else:
         # inform users if OTP is invalid
         flash("You have supplied an invalid 2FA token!", "danger")
         return redirect(url_for("login_2fa"))
 
+@app.route('/logout')
+def logout():
+    session.pop('auth_token', None)
+    session.pop('authenticated', None)
+    return redirect(url_for('login'))
 # Add Function
 @app.route("/db/add/", methods=["GET","PUT"] )
 @app.route("/db/add/<appliance_name>", methods=["GET","PUT"] )
@@ -110,7 +121,7 @@ def add(appliance_name=None):
         return "Not Valid"
     try:
         cur = mysql.connection.cursor()
-        query="insert into sensors(Appliance_Name,Status) values ('" + json_dumps(appliance_name) + "','" + json_dumps(StatusStr) + "');"
+        query="insert into sensors(Appliance_Name,Status) values ('" + json.dumps(appliance_name) + "','" + json.dumps(StatusStr) + "');"
         print(query)
         cur.execute(query)
         mysql.connection.commit()
@@ -131,7 +142,7 @@ def update(device_id=None):
    
     try:
         cur = mysql.connection.cursor()
-        query="update sensors set Status = '" + json_dumps(StatusStr) + "' where ID = '" + json_dumps(device_id) + "';"
+        query="update sensors set Status = '" + json.dumps(StatusStr) + "' where ID = '" + json.dumps(device_id) + "';"
         print(query)
         cur.execute(query)
         mysql.connection.commit()
@@ -142,9 +153,14 @@ def update(device_id=None):
     return "OK"
 
  
+ 
 #Database Page
 @app.route('/db', methods=["GET","PUT"] )
 def default():
+    if 'auth_token' in session:
+            return f(*args, **kwargs)
+
+    return redirect(url_for('login'))
     #Same as Init
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM sensors')
