@@ -9,6 +9,7 @@ from datetime import datetime
 import pyotp
 from flask import *
 from flask_bootstrap import Bootstrap
+import json
 
 
 
@@ -109,7 +110,7 @@ def add(appliance_name=None):
         return "Not Valid"
     try:
         cur = mysql.connection.cursor()
-        query="insert into sensors(Appliance_Name,Status) values ('" + appliance_name + "','" + StatusStr + "');"
+        query="insert into sensors(Appliance_Name,Status) values ('" + json_dumps(appliance_name) + "','" + json_dumps(StatusStr) + "');"
         print(query)
         cur.execute(query)
         mysql.connection.commit()
@@ -130,7 +131,7 @@ def update(device_id=None):
    
     try:
         cur = mysql.connection.cursor()
-        query="update sensors set Status = '" + StatusStr + "' where ID = '" + device_id + "';"
+        query="update sensors set Status = '" + json_dumps(StatusStr) + "' where ID = '" + json_dumps(device_id) + "';"
         print(query)
         cur.execute(query)
         mysql.connection.commit()
