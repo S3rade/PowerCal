@@ -96,10 +96,7 @@ def login_2fa():
 # 2FA form route
 @app.route("/login/2fa/", methods=["POST"])
 def login_2fa_form():
-    if session.get('logined') == True:
-            print("Access Granted")
-    else:
-        return redirect(url_for('login'))
+   
     # getting secret key used by user
     secret = request.form.get("secret")
     # getting OTP provided by user
@@ -168,14 +165,15 @@ def update(device_id=None):
 @app.route('/db', methods=["GET","PUT"] )
 def default():
     if session.get('authenticated') == True:
-            print("Access Granted")
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT * FROM sensors')
+        results = cur.fetchall()
+        cur.close()
+        print("Access Granted")
     else:
         return redirect(url_for('login'))
     #Same as Init
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM sensors')
-    results = cur.fetchall()
-    cur.close()
+    
 
     #Generation of Table
     if results != None :
