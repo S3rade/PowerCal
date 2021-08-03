@@ -24,7 +24,7 @@ from datetime import datetime
 #NEW
 #====================================================
 # MQTT shit 
-MQTT_Broker = "172.17.0.4"
+MQTT_Broker = "172.16.0.12"
 MQTT_Port = 8883
 Keep_Alive_Interval = 45
 topic = "iot"
