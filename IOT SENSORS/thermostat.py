@@ -24,10 +24,10 @@ from datetime import datetime
 #NEW
 #====================================================
 # MQTT setup 
-MQTT_Broker = "172.16.0.12"
-MQTT_Port = 1883
+MQTT_Broker = "172.17.0.4"
+MQTT_Port = 8883
 Keep_Alive_Interval = 45
-topic = "iot"
+topic = "Cost/Sensors"
 
 def on_connect(client, userdata, rc):
 	if rc != 0:
