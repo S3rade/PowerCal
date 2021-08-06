@@ -8,7 +8,7 @@ _=os.system("clear")
 
 #MQTT Details
 broker="172.16.0.12"
-port = 1883
+port = 8883
 client = mqtt.Client("IOT-DB-Subscriber")
 #Username and password to connect
 client.username_pw_set(username= "root",password="kali")
