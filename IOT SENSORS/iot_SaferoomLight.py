@@ -16,7 +16,7 @@ GPIO.setup(11, GPIO.IN)         #Read output from PIR motion sensor
 GPIO.setup(3, GPIO.OUT)         #LED output pin
 
 broker="iot-mqtt"
-port = 8883
+port = 1883
 client = mqtt.Client("IOT-Sensor-Publisher")
 client.username_pw_set(username= "root",password="kali")
 certfilepath= "/root/cost_vol/scripts/cacert/ca.crt"

@@ -45,7 +45,7 @@ print('All LEDs are turned OFF' + '\n')
 
 #MQTT Details
 broker="iot-mqtt"
-port = 8883
+port = 1883
 client = mqtt.Client("IOT-Sensor-Publisher")
 client.username_pw_set(username= "root",password="kali")
 certfilepath= "/root/cost_vol/scripts/cacert/ca.crt"
