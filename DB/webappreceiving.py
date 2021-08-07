@@ -47,16 +47,17 @@ def on_message(client, userdata, msg):
     #Converting to string and stripping first 2 and last 2 characters
     appliance_name = str(appliance_name)
     appliance_name = appliance_name[2:-2]
-    print(appliance_name, appliance_status)
+    #print(appliance_name, appliance_status)
+    #Converting the status into string and stripping first 2 and last 2 characters
+    appliance_status = str(appliance_status)
+    appliance_status = appliance_status[2:-2]
+    #print (appliance_status) //For testing
     #print (appliance_name) //For testing
 
     if appliance_name in appliance_list:
         #Translating the position of the appliance name into the appliance_list
         position = appliance_list.index(appliance_name)
-        #Converting the status into string and stripping first 2 and last 2 characters
-        appliance_status = str(appliance_status)
-        appliance_status = appliance_status[2:-2]
-        #print (appliance_status) //For testing
+        
 
         #Since python arrays start with 0, we start with 1 to make it same as the device_id
         position = position + 1
