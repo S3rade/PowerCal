@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#! /usr/bin/env python3
 
 #all the imports
 import os 
@@ -129,7 +129,11 @@ def add(appliance_name=None):
         return "Not Valid"
     try:
         cur = mysql.connection.cursor()
-        query="insert into sensors(Appliance_Name,Status) values ('" + json.dumps(appliance_name) + "','" + json.dumps(StatusStr) + "');"
+        appliance_name = json.dumps(appliance_name)
+        appliance_name = appliance_name[1:-1]
+        StatusStr = json.dumps(StatusStr)
+        StatusStr = StatusStr[1:-1]
+        query="insert into sensors(Appliance_Name,Status) values ('" + appliance_name + "','" + StatusStr + "');"
         print(query)
         cur.execute(query) #Executing the query
         mysql.connection.commit() #Committing the changes into the database 
@@ -150,7 +154,11 @@ def update(device_id=None):
    
     try:
         cur = mysql.connection.cursor()
-        query="update sensors set Status = '" + json.dumps(StatusStr) + "' where ID = '" + json.dumps(device_id) + "';"
+        device_id = json.dumps(device_id)
+        device_id = device_id[1:-1]
+        StatusStr = json.dumps(StatusStr)
+        StatusStr = StatusStr[1:-1]
+        query="update sensors set Status = '" + StatusStr + "' where ID = '" + device_id + "';"
         print(query)
         cur.execute(query) #Executing the query
         mysql.connection.commit() #Committing the changes into the database
