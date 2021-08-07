@@ -13,11 +13,11 @@ client = mqtt.Client("IOT-DB-Subscriber")
 #Username and password to connect
 client.username_pw_set(username= "root",password="kali")
 #Cacert files parameters
-certfilepath= "/root/iot_vol/scripts/cacert/ca.crt"
+certfilepath= "/root/cost_vol/scripts/cacert/ca.crt"
 client.tls_set(certfilepath,tls_version=2)
 client.tls_insecure_set(False)
 #appliance_list defined for later use in functions below
-appliance_list = ['Aircon', 'SafeRoom_Light', 'Oven']
+appliance_list = ['Aircon', 'TV']
 
 #MQTT Functions
 def on_connect(client, userdata, flags, rc):
@@ -30,22 +30,24 @@ def on_message(client, userdata, msg):
     apayload = str(msg.payload)
     newpayload = apayload[2:-1]
     appliance_msg = newpayload
-    #print (appliance_msg) //For testing
+    print (appliance_msg) #//For testing
 
     #Spliting the message by the delimiter and sorting it
     split_msg = appliance_msg.split(":")
-    split_msg_sorted = sorted(split_msg)
-    #print(split_msg_sorted) //For testing
+    #split_msg_sorted = sorted(split_msg)
+    #print(split_msg_sorted)  #/For testing
 
     #Appending the splitted messages into variables
-    appliance_name = split_msg_sorted[0].split(":")
-    appliance_status = split_msg_sorted[1].split(":")
+    appliance_name = split_msg[0].split(":")
+    appliance_status = split_msg[1].split(":")
+    
     #print (appliance_list) //For testing
 
     #If appliance name inside
     #Converting to string and stripping first 2 and last 2 characters
     appliance_name = str(appliance_name)
     appliance_name = appliance_name[2:-2]
+    print(appliance_name, appliance_status)
     #print (appliance_name) //For testing
 
     if appliance_name in appliance_list:
@@ -69,13 +71,20 @@ def on_message(client, userdata, msg):
             os.system('curl http://172.16.0.13:8080/db/update/'+device_id+'?"Status='+deviceStatus+'"')
             Messagereceived=False #Loop breaking
     else:
-        deviceStatus= "0"
         print("Appliance name not recognised")
         print ("Adding Appliance into the Database") #Since appliance not recognised, we need to add it into the db
-        os.system('curl http://172.16.0.13:8080/db/add/'+appliance_name+'?"Status='+deviceStatus+'"')
-        appliance_list.append(appliance_name) #Once added, append the new appliance name into the appliance_list to make the list updated and remove double adding
-        Messagereceived=False
-        print(appliance_list)
+        if appliance_status == "OFF":
+            deviceStatus = "0" 
+            os.system('curl http://172.16.0.13:8080/db/add/'+ appliance_name+'?"Status='+deviceStatus+'"')
+            appliance_list.append(appliance_name) #Once added, append the new appliance name into the appliance_list to make the list updated and remove double adding
+            Messagereceived=False
+            #print(appliance_list)
+        else:
+            deviceStatus = "1"
+            os.system('curl http://172.16.0.13:8080/db/add/'+ appliance_name+'?"Status='+deviceStatus+'"')
+            appliance_list.append(appliance_name) #Once added, append the new appliance name into the appliance_list to make the list updated and remove double adding
+            Messagereceived=False
+            #print(appliance_list)
 
 
 connected=False
