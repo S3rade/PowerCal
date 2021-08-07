@@ -143,7 +143,7 @@ We will need a base image to be used on all the other docker machines, the follo
  5. On your Database Docker, launch powercal.py usings the codes: 
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
-    - `./powercal.py`  
+    - `./docker_app.py`  
     
     Errors you may Face: 
     
@@ -151,6 +151,10 @@ We will need a base image to be used on all the other docker machines, the follo
  
  6.Now you can see the Table of the databse by going to databaseip:8080 in web browser of your choice. 
  
+ 7.ADD/UPDATE Function
+    - When u run a script to perform add function (say: BasicOven.py), make sure to run the script and confirm that any changes made appears on the webdb.
+    **Special case for iot_SaferoomLight.py
+    - For this u need to use the following command: Iot_saferoomlight.py -v (.mov file name)
 
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
