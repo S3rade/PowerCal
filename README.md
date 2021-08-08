@@ -142,8 +142,8 @@ We will need a base image to be used on all the other docker machines, the follo
  5. On your IOT Sensor Docker, launch iot_sensor.py script using the commands:
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
-    - `./iot_sensor.py`
-  
+    - `./sensor.py` Change the Sensor to the name of your own sensor file.
+   
     Errors you may Face: 
     
     Insufficent privileges: `chmod u+x filename`
