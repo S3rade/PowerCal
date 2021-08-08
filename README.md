@@ -122,14 +122,24 @@ We will need a base image to be used on all the other docker machines, the follo
  
  2. Download PowerCal into your docker root directory, for my case its at /root/cost_vol/scripts
  
- 3. Launch MQTT broker in your MQTT docker by using the commands:
+ 3. DOCKER RUN COMMANDS:
+    SENSOR DOCKER
+    - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-sensor --net cost_network --ip 172.16.0.11 -v cost_vol:/root/cost_vol --name iot-sensor cost-image bash`
+    
+    MQTT DOCKER
+    - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-mqtt --net cost_network  --ip 172.16.0.12 -v cost_vol:/root/cost_vol --name iot-mqtt cost-image bash`
+    
+    DB DOCKER
+    - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-db --net cost_network --ip 172.16.0.13 -v cost_vol:/root/cost_vol --name iot-db cost-image bash`
+ 
+ 4. Launch MQTT broker in your MQTT docker by using the commands:
     - `cd /root/cost_vol/scripts/cacert ` Be sure to change to your Docker root directory 
     
     - `mosquitto -v -c mosquitto_tls.conf`
     
     With this now your MQTT Broker is running
     
- 4. On your IOT Sensor Docker, launch iot_sensor.py script using the commands:
+ 5. On your IOT Sensor Docker, launch iot_sensor.py script using the commands:
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
     - `./iot_sensor.py`
@@ -140,7 +150,7 @@ We will need a base image to be used on all the other docker machines, the follo
     
     Import EmulateGPIO Cant load module : ensure EmulateGPIO.py is in the same root directory as iot_sensor.py 
  
- 5. On your Database Docker, launch powercal.py usings the codes: 
+ 6. On your Database Docker, launch powercal.py usings the codes: 
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
     - `./docker_app.py`  
@@ -155,6 +165,7 @@ We will need a base image to be used on all the other docker machines, the follo
     - When u run a script to perform add function (say: BasicOven.py), make sure to run the script and confirm that any changes made appears on the webdb.
     **Special case for iot_SaferoomLight.py
     - For this u need to use the following command: Iot_saferoomlight.py -v (.mov file name)
+
 
  ## References
  1. [Installtion Guide For Docker On Kali Linux 2018](https://medium.com/@calypsobronte/installing-docker-in-kali-linux-2018-1-ef3a8ce3648)
