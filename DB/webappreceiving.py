@@ -28,7 +28,7 @@ def on_message(client, userdata, msg):
     Messagereceived = True
     #Converting the payload to string first then stripping the first 2 characters and the last one
     apayload = str(msg.payload)
-    newpayload = apayload[2:-1]
+    newpayload = apayload[2:-1] 
     appliance_msg = newpayload
     print (appliance_msg) #//For testing
 

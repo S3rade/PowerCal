@@ -130,10 +130,10 @@ def add(appliance_name=None):
     try:
         cur = mysql.connection.cursor()
         appliance_name = json.dumps(appliance_name)
-        appliance_name = appliance_name[1:-1]
-        StatusStr = json.dumps(StatusStr)
-        StatusStr = StatusStr[1:-1]
-        query="insert into sensors(Appliance_Name,Status) values ('" + appliance_name + "','" + StatusStr + "');"
+        appliance_name = appliance_name[1:-1] #Remove first and last string
+        StatusStr = json.dumps(StatusStr) #json.dumps used as escape string
+        StatusStr = StatusStr[1:-1] #Remove first and last string 
+        query="insert into sensors(Appliance_Name,Status) values ('" + appliance_name + "','" + StatusStr + "');" #Prepared statements here
         print(query)
         cur.execute(query) #Executing the query
         mysql.connection.commit() #Committing the changes into the database 
@@ -205,8 +205,6 @@ def default():
             completeTable += "<th>" + str(c[1]) + "</th>"
 
             #Retreiving the third Variable from DB Query and check for Boolean, '1' means ON and '0' means OFF
-            hi = str(c[2])
-            
             if str(c[2]) == '1': #Check if its a '1' or '0'
                 
             
