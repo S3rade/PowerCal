@@ -135,7 +135,7 @@ We will need a base image to be used on all the other docker machines, the follo
  4. Launch MQTT broker in your MQTT docker by using the commands:
     - `cd /root/cost_vol/scripts/cacert ` Be sure to change to your Docker root directory 
     
-    - `mosquitto -v -c mosquitto_tls.conf`
+    - `mosquitto -v -c tls.conf`
     
     With this now your MQTT Broker is running
     
