@@ -153,7 +153,7 @@ We will need a base image to be used on all the other docker machines, the follo
  6. On your Database Docker, launch powercal.py usings the codes: 
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
     
-    - `./docker_app.py`  
+    - `./start_webdb.sh`  
     
     Errors you may Face: 
     
