@@ -130,6 +130,7 @@ We will need a base image to be used on all the other docker machines, the follo
     - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-mqtt --net cost_network  --ip 172.16.0.12 -v cost_vol:/root/cost_vol --name iot-mqtt cost-image bash`
     
     DB DOCKER
+    - `modprobe ip6table_filter` Please DO THIS IN YOUR NORMAL TERMINAL BEFORE RUNNING DOCKER !!
     - `docker run --cap-add=NET_ADMIN -it --rm --hostname iot-db --net cost_network --ip 172.16.0.13 -v cost_vol:/root/cost_vol --name iot-db cost-image bash`
  
  4. Launch MQTT broker in your MQTT docker by using the commands:
@@ -151,8 +152,7 @@ We will need a base image to be used on all the other docker machines, the follo
     Import EmulateGPIO Cant load module : ensure EmulateGPIO.py is in the same root directory as iot_sensor.py 
  
  6. On your Database Docker, launch powercal.py usings the codes: 
-    - `modprobe ip6table_filter`
-    
+   
     - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
         
     - `./start_webdb.sh`  
@@ -161,9 +161,9 @@ We will need a base image to be used on all the other docker machines, the follo
     
     Insufficent privileges: `chmod u+x filename`
  
- 6.Now you can see the Table of the databse by going to databaseip:8080 in web browser of your choice. 
+ 7.Now you can see the Table of the databse by going to databaseip:8080 in web browser of your choice. 
  
- 7.ADD/UPDATE Function
+ 8.ADD/UPDATE Function
     - When u run a script to perform add function (say: BasicOven.py), make sure to run the script and confirm that any changes made appears on the webdb.
     **Special case for iot_SaferoomLight.py
     - For this u need to use the following command: Iot_saferoomlight.py -v (.mov file name)
