@@ -151,8 +151,10 @@ We will need a base image to be used on all the other docker machines, the follo
     Import EmulateGPIO Cant load module : ensure EmulateGPIO.py is in the same root directory as iot_sensor.py 
  
  6. On your Database Docker, launch powercal.py usings the codes: 
-    - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
+    - `modprobe ip6table_filter`
     
+    - `cd /root/cost_vol/scripts` Be sure to change to your Docker root directory 
+        
     - `./start_webdb.sh`  
     
     Errors you may Face: 
